@@ -5,7 +5,7 @@ from os.path import exists
 global access_token
 
 def read_access_token():
-    tr=open("access_token")
+    tr=open("cfg/access_token")
     t=tr.read()
     tr.close()
     return t
@@ -16,7 +16,7 @@ def reauth():
 https://developers.facebook.com/tools/explorer/
 """
     t=cm.raw_input_lb("Paste your new access token here:\n> ")
-    bw=open("access_token",'w')
+    bw=open("cfg/access_token",'w')
     bw.truncate()
     bw.write(t)
     bw.close()
@@ -24,11 +24,12 @@ https://developers.facebook.com/tools/explorer/
 
 def authenticate():
     authenticated=False
-    at_check=exists("access_token")
+    at_check=exists("cfg/access_token")
     
     if at_check is True:
         access_token=read_access_token()
     else:
+        print "There's no Facebook access token to read!"
         access_token=reauth()
 
     while authenticated is False:
