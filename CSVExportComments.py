@@ -2,10 +2,13 @@ import facebook
 import json
 import ast
 from os.path import exists
+from os.path import expanduser
 from prpy import cm
 from prpy import fbauth
 
-csv_check=exists("comments.csv")
+usr_home = expanduser("~")
+csv_check=exists("%s/Downloads/fb-comments.csv"%usr_home)
+# TODO: conditional statement that prompts to overwrite if file already exists. now the script always overwrites.
 
 global comments
 global post_id
@@ -40,7 +43,7 @@ print "Done.\n"
 # lambs to the slaughter
 print "Writing to file..."
 global tbw_obj
-tbw_obj=open("comments.csv",'w')
+tbw_obj=open("%s/Downloads/fb-comments.csv"%usr_home,'w')
 tbw_obj.truncate()
 tbw_obj.write("Name,User ID,Comment,Comment ID,\n")
 
@@ -58,4 +61,4 @@ for x in comments_data:
     
 tbw_obj.close()
     
-print "Export complete!"
+print "Exported to Downloads!"
