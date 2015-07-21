@@ -41,7 +41,7 @@ def authenticate():
             print "Authorized: %s"%token_name
             print "\nContinue as this user?\nPress ENTER to continue, or type 'no' and press ENTER to change your access token."
             authchoice=cm.raw_input_lb("> ")
-            # TODO: add ability to interrupt with ESC
+            # TODO: add ability to interrupt with ESC instead of typing no
             if authchoice is "":
                 authenticated=True
                 return graph
