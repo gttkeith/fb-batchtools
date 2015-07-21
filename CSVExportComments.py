@@ -3,8 +3,8 @@ import json
 import ast
 from os.path import exists
 from os.path import expanduser
-from prpy import cm
-from prpy import fbauth
+from pydeps import cm
+from pydeps import fbauth
 
 usr_home = expanduser("~")
 csv_check=exists("%s/Downloads/fb-comments.csv"%usr_home)
