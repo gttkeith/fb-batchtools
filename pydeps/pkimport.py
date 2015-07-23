@@ -5,7 +5,7 @@ global parentscript_action
 def ids_txt():
     print "Reading IDs..."
     targetids=[]
-    targetids_obj=open("./UserImport/IDs.txt",'r')
+    targetids_obj=open("./UserInput/IDs.txt",'r')
     targetids_raw=targetids_obj.readlines()
     targetids_obj.close()
     # TO-DO: check if targetids are possibly invalid and if so, show a warning.
@@ -23,7 +23,7 @@ def ids_txt():
     return targetids
 
 def content_txt():
-    imported_content_obj=open("./UserImport/Content.txt",'r')
+    imported_content_obj=open("./UserInput/Content.txt",'r')
     imported_content=imported_content_obj.read()
     imported_content_obj.close()
     print "Content:"
@@ -33,7 +33,7 @@ def content_txt():
     if choice is "":
         return imported_content
     else:
-        tbw_obj=open("./UserImport/Content.txt",'w')
+        tbw_obj=open("./UserInput/Content.txt",'w')
         tbw_obj.write(choice)
         tbw_obj.close()
         content_txt()
