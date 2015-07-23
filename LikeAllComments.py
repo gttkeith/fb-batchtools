@@ -1,8 +1,8 @@
-import facebook
 import json
 import ast
-from pydeps import fbauth
+import facebook
 from pydeps import cm
+from pydeps import fbauth
 
 global comments
 global post_id

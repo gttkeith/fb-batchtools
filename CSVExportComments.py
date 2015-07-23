@@ -1,6 +1,6 @@
-import facebook
 import json
 import ast
+import facebook
 from os.path import exists
 from os.path import expanduser
 from pydeps import cm
@@ -44,7 +44,6 @@ print "Done.\n"
 print "Writing to file..."
 global tbw_obj
 tbw_obj=open("%s/Downloads/fb-comments.csv"%usr_home,'w')
-tbw_obj.truncate()
 tbw_obj.write("Name,User ID,Comment,Comment ID,\n")
 
 # write till we drop
