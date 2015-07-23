@@ -12,7 +12,7 @@ Place your content into Content.txt and list of target IDs into IDs.txt!
 """
 graph=fbauth.authenticate()
 
-# Open IDs
+# import IDs and content
 targetids=pkimport.ids_txt()
 imported_content=pkimport.content_txt()
 
