@@ -17,7 +17,6 @@ https://developers.facebook.com/tools/explorer/
 """
     t=cm.raw_input_lb("Paste your new access token here:\n> ")
     bw=open("cfg/access_token",'w')
-    bw.truncate()
     bw.write(t)
     bw.close()
     return t
