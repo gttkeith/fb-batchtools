@@ -6,7 +6,7 @@ from pydeps import pkimport
 pkimport.parentscript_action = "send your batch comments"
 
 # and here we go!
-print "BATCH COMMENTER v0.1\n"
+print "BATCH COMMENTER v0.1\nComment on multiple posts at the same time\n"
 graph=fbauth.authenticate()
 
 # Open IDs

@@ -16,7 +16,7 @@ global post_accessible
 post_accessible=False
 
 # and here we go!
-print "COMMENT FETCHER v0.1\n"
+print "COMMENT FETCHER v0.1\nExports all comments on a selected post into a CSV file\n"
 graph=fbauth.authenticate()
 
 # what's the post?

@@ -10,7 +10,7 @@ global post_accessible
 post_accessible=False
 
 # and here we go!
-print "LIKE ALL COMMENTS v0.1\n"
+print "LIKE ALL COMMENTS v0.1\nLikes all comments on a selected post\n"
 graph=fbauth.authenticate()
 
 # what's the post?
