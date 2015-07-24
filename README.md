@@ -6,5 +6,4 @@ Dependencies:
 * Python for Facebook https://github.com/pythonforfacebook/facebook-sdk
 * Facebook Graph API access token https://developers.facebook.com/tools/explorer/ (remember to enable the relevant permissions!)
 
-User files are stored at ~/Documents/fb-powerkit.
-Outputs are exported to ~/Downloads. Go crazy!
+User files are stored at ~/Documents/fb-powerkit, and outputs are exported to ~/Downloads. Go crazy!
