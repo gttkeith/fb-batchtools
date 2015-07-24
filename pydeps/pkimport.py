@@ -5,12 +5,13 @@ global parentscript_action
 def ids_txt():
     print "Reading IDs..."
     targetids=[]
-    targetids_obj=open("./UserInput/IDs.txt",'r')
+    targetids_obj=open("%s/Documents/fb-powerkit/IDs.txt"%cm.usr_home,'r')
     targetids_raw=targetids_obj.readlines()
     targetids_obj.close()
     # TO-DO: check if targetids are possibly invalid and if so, show a warning.
     for x_raw in targetids_raw:
-        if x_raw[-1:] is "\n":
+        if x_raw[-1:] is """
+""":
             x=x_raw[0:-1]
             targetids.append(x)
         else:
@@ -23,7 +24,7 @@ def ids_txt():
     return targetids
 
 def content_txt():
-    imported_content_obj=open("./UserInput/Content.txt",'r')
+    imported_content_obj=open("%s/Documents/fb-powerkit/Content.txt"%cm.usr_home,'r')
     imported_content=imported_content_obj.read()
     imported_content_obj.close()
     print "Content:"
@@ -33,7 +34,7 @@ def content_txt():
     if choice is "":
         return imported_content
     else:
-        tbw_obj=open("./UserInput/Content.txt",'w')
+        tbw_obj=open("%s/Documents/fb-powerkit/Content.txt"%cm.usr_home,'w')
         tbw_obj.write(choice)
         tbw_obj.close()
         content_txt()

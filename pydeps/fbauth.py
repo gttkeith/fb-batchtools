@@ -1,11 +1,10 @@
 import cm
 import facebook
-from os.path import exists
 
 global access_token
 
 def read_access_token():
-    tr=open("./cfg/access_token")
+    tr=open("%s/Documents/fb-powerkit/cfg/access_token"%cm.usr_home)
     t=tr.read()
     tr.close()
     return t
@@ -16,20 +15,14 @@ def reauth():
 https://developers.facebook.com/tools/explorer/
 """
     t=cm.raw_input_lb("Paste your new access token here:\n> ")
-    bw=open("./cfg/access_token",'w')
+    bw=open("%s/Documents/fb-powerkit/cfg/access_token"%cm.usr_home,'w')
     bw.write(t)
     bw.close()
     return t
 
 def authenticate():
     authenticated=False
-    at_check=exists("./cfg/access_token")
-    
-    if at_check is True:
-        access_token=read_access_token()
-    else:
-        print "There's no Facebook access token to read!"
-        access_token=reauth()
+    access_token=read_access_token()
 
     while authenticated is False:
         try:

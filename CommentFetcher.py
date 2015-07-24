@@ -2,18 +2,17 @@ import json
 import ast
 import facebook
 from os.path import exists
-from os.path import expanduser
 from pydeps import cm
 from pydeps import fbauth
 
-usr_home = expanduser("~")
-csv_check=exists("%s/Downloads/fb-comments.csv"%usr_home)
+csv_check=exists("%s/Downloads/fb-comments.csv"%cm.usr_home)
 # TODO: conditional statement that prompts to overwrite if file already exists. now the script always overwrites.
 
 global comments
 global post_id
 global post_accessible
 post_accessible=False
+
 
 # and here we go!
 print "COMMENT FETCHER v0.1\nExports all comments on a selected post into a CSV file\n"
@@ -43,7 +42,7 @@ print "Done.\n"
 # lambs to the slaughter
 print "Writing to file..."
 global tbw_obj
-tbw_obj=open("%s/Downloads/fb-comments.csv"%usr_home,'w')
+tbw_obj=open("%s/Downloads/fb-comments.csv"%cm.usr_home,'w')
 tbw_obj.write("Name,User ID,Comment,Comment ID,\n")
 
 # write till we drop
