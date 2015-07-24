@@ -5,6 +5,8 @@ from os.path import exists
 from pydeps import cm
 from pydeps import fbauth
 
+cm.init()
+
 csv_check=exists("%s/Downloads/fb-comments.csv"%cm.usr_home)
 # TODO: conditional statement that prompts to overwrite if file already exists. now the script always overwrites.
 

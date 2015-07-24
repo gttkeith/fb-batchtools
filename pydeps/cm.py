@@ -25,5 +25,3 @@ def init():
     
     ensure_file("%s/Documents/fb-powerkit/Content.txt"%usr_home)
     ensure_file("%s/Documents/fb-powerkit/IDs.txt"%usr_home)
-
-init()

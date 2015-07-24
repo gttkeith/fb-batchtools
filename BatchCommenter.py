@@ -3,6 +3,8 @@ from pydeps import cm
 from pydeps import fbauth
 from pydeps import pkimport
 
+cm.init()
+
 pkimport.parentscript_action = "send your batch comments"
 
 # and here we go!

@@ -4,6 +4,8 @@ import facebook
 from pydeps import cm
 from pydeps import fbauth
 
+cm.init()
+
 global comments
 global post_id
 global post_accessible
