@@ -6,4 +6,6 @@ Dependencies:
 * Python for Facebook https://github.com/pythonforfacebook/facebook-sdk
 * Facebook Graph API access token https://developers.facebook.com/tools/explorer/ (remember to enable the relevant permissions!)
 
+The scripts include hidden comments when doing their batch actions.
+
 User files are stored at ~/Documents/fb-powerkit, and outputs are exported to ~/Downloads. Go crazy!
