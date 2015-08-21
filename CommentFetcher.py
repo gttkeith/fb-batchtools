@@ -1,64 +1,38 @@
 import json
 import ast
 import facebook
-from os.path import exists
 from pydeps import cm
+from pydeps import pkinit
 from pydeps import fbauth
+from pydeps import fbio
+from pydeps import pkfileops
 
-cm.init()
-
-csv_check=exists("%s/Downloads/fb-comments.csv"%cm.usr_home)
-# TODO: conditional statement that prompts to overwrite if file already exists. now the script always overwrites.
-
-global comments
-global post_id
-global post_accessible
-post_accessible=False
-
+pkinit.init()
 
 # and here we go!
 print "COMMENT FETCHER v0.1\nExports all comments on a selected post into a CSV file\n"
-graph=fbauth.authenticate()
+fbauth.begin()
 
-# what's the post?
-post_id=cm.raw_input_lb("What's the ID of the post you'd like to fetch?\n> ")
-
-# verify that FB post ID isn't bogus
-while post_accessible is False:
-    try:
-        print "Fetching comments from Facebook..."
-        field_args={'fields':'id,from.name,message','limit':'50000'}
-        # TODO: try to remove this limit 50000 thingy...and add pagination support!
-        comments=graph.get_connections("%s"%post_id,connection_name='comments',**field_args)
-        post_accessible=True
-    except facebook.GraphAPIError:
-        print """Post ID invalid.\nAre you sure that it's the correct ID? The post ID is a long number, just before the end of the post URL."""
-        post_id=raw_input("Paste your valid post ID here:\n> ")
-    
-# make it into a pretty dict for processing
-comments=ast.literal_eval(json.dumps(comments))
-comments_data=comments['data']
-
-print "Done.\n"
+fbio.workingids=pkfileops.import_ids_txt()
 
 # lambs to the slaughter
 print "Writing to file..."
-global tbw_obj
-tbw_obj=open("%s/Downloads/fb-comments.csv"%cm.usr_home,'w')
-tbw_obj.write("Name,User ID,Comment,Comment ID,\n")
+pkfileops.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'w')
+## debug
+pkfileops.active_file_obj.pkfileops_csv_write_line("Post","Post ID","Name","User ID","Comment","Comment ID")
 
 # write till we drop
-for x in comments_data:
+for post_id in pkfileops.targetids:
+    post_content=get_post(post_id)
+    x=fbio.get_post_comments(post_id)
     x_from=x['from']
     ac_name=x_from['name']
     ac_userid=x_from['id']
     ac_message=x['message']
-    # input santisation in progress!
-    ac_message=ac_message.replace("\n"," ")
-    ac_message=ac_message.replace('"'," ")
     ac_postid=x['id']
-    tbw_obj.write("\"%s\",\"%s\",\"%s\",\"%s\"\n"%(ac_name,ac_userid,ac_message,ac_postid))
-    
-tbw_obj.close()
-    
+    pkfileops.active_file_obj.pkfileops.csv_write_line(post_content,post,post_id,ac_name,ac_userid,ac_message,ac_postid)
+    fbio.workingids[:] = [item for item in fbio.workingids if item != post_id]
+
+pkfileops.active_file_obj.close()
+
 print "Exported to Downloads!"
