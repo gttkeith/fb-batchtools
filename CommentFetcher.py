@@ -34,7 +34,7 @@ for post_id in btoolsfile.targetids:
         ac_postid=x['id'].encode("utf-8")
         btoolsfile.csv_write_line(post_content,post_id,ac_name,ac_userid,ac_message,ac_postid)
     fbio.workingids[:] = [item for item in fbio.workingids if item != post_id]
-    print "Exported: %s"%post_id
+    print "Exported: %s (%s/%s)"%(post_id,btoolsfile.targetids-fbio.workingids,btoolsfile.targetids)
 
 btoolsfile.active_file_obj.close()
 

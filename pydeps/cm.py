@@ -22,7 +22,7 @@ def raw_input_lb(txt):
 def keypress_exit(error):
     if error != "":
         print "Error: ",error
-    raw_input("\n** PRESS RETURN TO EXIT **")
+    raw_input("\n** PRESS RETURN TO EXIT **\n")
     exit(0)
 
 def ensure_dir(x):
