@@ -1,10 +1,10 @@
 import cm
+import unicodedata
 from os.path import exists
 
 global active_file_obj
 
 def import_ids_txt():
-    print "Reading IDs..."
     global targetids
     targetids=[]
     targetids_obj=open("%s/IDs.txt"%cm.active_dir,'r')
@@ -48,8 +48,7 @@ def csv_write_line(*arg):
     newline=True
     to_be_written=""
     for item in arg:
-        item_sanitise=item.replace('"'," ")
-        item_sanitised=item_sanitise.replace("\n"," ")
+        item_sanitised=item.replace('"'," ").replace("\n"," ")
         if newline == True:
             to_be_written+=str("\"")
             newline=False

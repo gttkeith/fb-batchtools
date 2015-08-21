@@ -22,7 +22,7 @@ def init():
         cm.active_dir = cm.work_dir
     else:
         print "Data from last session was found. Resume session?\nType Y to continue, or anything else to discard and start a new session."
-        choice=raw_input_lb("> ")
+        choice=cm.raw_input_lb("> ")
         if choice is "Y":
             cm.active_dir = cm.resume_dir
         else:
