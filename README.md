@@ -1,4 +1,4 @@
-# fb-powerkit
+# fb-batchtools
 A quick and dirty set of tools for Facebook power users and page admins
 
 Dependencies:  
@@ -6,4 +6,4 @@ Dependencies:
 * Python for Facebook https://github.com/pythonforfacebook/facebook-sdk
 * Facebook Graph API access token https://developers.facebook.com/tools/explorer/ (remember to enable the relevant permissions!)
 
-User files are stored at ~/Documents/fb-powerkit, and outputs are exported to ~/Downloads. Go crazy!
+User files are stored at ~/Documents/fb-batchtools, and outputs are exported to ~/Downloads. Go crazy!
