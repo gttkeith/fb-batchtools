@@ -6,7 +6,7 @@ global usr_home
 usr_home = expanduser("~")
 global active_dir
 global work_dir
-work_dir = "%s/Documents/fb-powerkit"%usr_home
+work_dir = "%s/Documents/fb-batchtools"%usr_home
 global cfg_dir
 cfg_dir = "%s/cfg"%work_dir
 global resume_dir

@@ -4,7 +4,6 @@ import sys
 import cm
 import facebook
 import fbauth
-import pkfileops
 
 global workingids
 
