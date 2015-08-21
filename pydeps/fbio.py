@@ -11,14 +11,17 @@ global workingids
 def id_check(x):
 	global workingids
 	try:
+                fbauth.check_auth()
 		fbauth.graph.get_object(x)
 	except facebook.GraphAPIError:
-		fbauth.check_auth()
-		print "An error occured. Please check your IDs and access token!"
+		print "An error occured. Please check your IDs!"
+                cm.empty_file("%s/IDs.txt"%cm.resume_dir)
+                resume_ids_obj=open("%s/IDs.txt"%cm.resume_dir,'a') 
 		for bak in workingids:
-			pkfilops.append_txt(bak,"%s/IDs.txt"%cm.active_dir)
-		print "Current progress has been saved."
-		cm.error_exit("%r"%sys.exc_info()[0])
+			resume_ids_obj.write("%s\n"%bak)
+		resume_ids_obj.close()
+		print "Current progress has been saved. Start the program again to resume!"
+		cm.keypress_exit("%r"%sys.exc_info()[0])
 
 def get_post(post_id):
 	print "in progress"
@@ -26,7 +29,7 @@ def get_post(post_id):
 
 def get_post_comments(post_id):
 	try:
-	    	field_args={'fields':'id,from.name,message','limit':'500000'}
+                field_args={'fields':'id,from.name,message','limit':'500000'}
 	    	# TODO: try to remove this limit 50000 thingy...and add pagination support!
 	    	comments=fbauth.graph.get_connections("%s"%post_id,connection_name='comments',**field_args)
 		comments=ast.literal_eval(json.dumps(comments))

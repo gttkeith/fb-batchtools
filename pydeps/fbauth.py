@@ -22,13 +22,14 @@ https://developers.facebook.com/tools/explorer/
     check_auth(access_token)
 
 def check_auth(access_token):
+    global graph
     try:
         graph=facebook.GraphAPI(access_token)
         info=graph.get_object("me")
         ret=info["name"]
         return ret
     except facebook.GraphAPIError:
-        print "The access token seems to be invalid."
+        print "The access token seems to be invalid or expired."
         change_access_token()
 
 def auth_choose(access_token):
@@ -42,6 +43,7 @@ def auth_choose(access_token):
         # TODO: add ability to interrupt with ESC instead of typing no
         if authchoice is "":
             authenticated=True
+            return graph
         else:
             print "Authentication canceled."
             access_token="null"

@@ -1,20 +1,11 @@
 import cm
 from os.path import exists
 
-global targetids
 global active_file_obj
-
-def empty_file(filen):
-    tbe_obj=open(filen)
-    tbe_obj.close()
-
-def append_txt(txty,filen):
-    tba_obj=open(filen,'a')
-    tba_obj.write(txty)
-    tba_obj.close
 
 def import_ids_txt():
     print "Reading IDs..."
+    global targetids
     targetids=[]
     targetids_obj=open("%s/IDs.txt"%cm.active_dir,'r')
     targetids_raw=targetids_obj.readlines()
@@ -34,7 +25,8 @@ def import_ids_txt():
         print "%d ID detected.\n"%num_targetids
     else:
         print "%d IDs detected.\n"%num_targetids
-    return targetids
+    workingids=targetids[:]
+    return workingids
 
 def import_content_txt(action):
     imported_content_obj=open("%s/Content.txt"%cm.work_dir,'r')
@@ -53,17 +45,17 @@ def import_content_txt(action):
         content_txt()
 
 def csv_write_line(*arg):
-    first_entry=True
+    newline=True
     to_be_written=""
     for item in arg:
         item_sanitise=item.replace('"'," ")
         item_sanitised=item_sanitise.replace("\n"," ")
-        if first_entry == True:
+        if newline == True:
             to_be_written+=str("\"")
-            first_entry=False
+            newline=False
         else:
             to_be_written+=str(",\"")
         to_be_written+=str(item_sanitised)
-        to_be_written+=str("\"")
-        active_file_obj.write(to_be_written)
-        active_file_obj.write("\n")
+	to_be_written+=str("\"")
+    active_file_obj.write(to_be_written)
+    active_file_obj.write("\n")
