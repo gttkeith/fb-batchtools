@@ -29,6 +29,7 @@ def remove_from_workingids(obj_id):
         workingids[:] = [item for item in workingids if item != obj_id]
 
 def debug_interact(calledfunc,obj_id):
+        time.sleep(0.5)
         ret=calledfunc(obj_id)
         print ret
         return ret
