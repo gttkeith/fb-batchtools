@@ -12,8 +12,8 @@ def id_check(x):
 	try:
                 fbauth.check_auth(fbauth.access_token)
 		fbauth.graph.get_object("%s"%x)
-	except facebook.GraphAPIError:
-		print "An error occured. Please check your IDs and Internet connection!"
+	except:
+		print "An error occured. If it's a Facebook Graph error, please check your IDs and connection!"
                 cm.empty_file("%s/IDs.txt"%cm.resume_dir)
                 resume_ids_obj=open("%s/IDs.txt"%cm.resume_dir,'a') 
 		for bak in workingids:
@@ -35,7 +35,7 @@ def fb_interact(calledfunc,obj_id):
                         ret=calledfunc(obj_id)
                         complete=True
                         return ret
-                except facebook.GraphAPIError:
+                except:
                         print "Exception: ",sys.exc_info()[0]
                         id_check(obj_id)
 
