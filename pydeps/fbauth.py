@@ -9,7 +9,6 @@ def read_access_token():
     tr=open("%s/access_token"%cm.cfg_dir)
     access_token=tr.read()
     tr.close()
-    return access_token
 
 def change_access_token():
     global access_token
@@ -17,13 +16,16 @@ def change_access_token():
 
 https://developers.facebook.com/tools/explorer/
 """
-    access_token=cm.raw_input_lb("Paste your new access token here:\n> ")
+    at_raw=cm.raw_input_lb("Paste your new access token here:\n> ")
     bw=open("%s/access_token"%cm.cfg_dir,'w')
-    bw.write(access_token)
+    bw.write(at_raw)
     bw.close()
-    check_auth(access_token)
+    read_access_token()
+    ret=check_auth()
+    return ret
 
-def check_auth(access_token):
+def check_auth():
+    global access_token
     global graph
     try:
         graph=facebook.GraphAPI(access_token,version='2.2')
@@ -32,13 +34,15 @@ def check_auth(access_token):
         return ret
     except facebook.GraphAPIError:
         print "The access token seems to be invalid or expired."
-        change_access_token()
+        ret=change_access_token()
+        return ret
 
-def auth_choose(access_token):
+def auth_choose():
+    global graph
     authenticated=False
     while authenticated is False:
         print "Authenticating..."
-        token_name=check_auth(access_token)
+        token_name=check_auth()
         print "Authorised: %s"%token_name
         print "\nContinue as this user?\nPress ENTER to continue, or type 'no' and press ENTER to change your access token."
         authchoice=cm.raw_input_lb("> ")
@@ -52,4 +56,5 @@ def auth_choose(access_token):
             change_access_token()
 
 def begin():
-    auth_choose(read_access_token())
+    read_access_token()
+    auth_choose()

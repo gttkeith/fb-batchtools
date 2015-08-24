@@ -29,6 +29,7 @@ def import_ids_txt():
     return workingids
 
 def import_content_txt(action):
+    global imported_content
     imported_content_obj=open("%s/Content.txt"%cm.work_dir,'r')
     imported_content=imported_content_obj.read()
     imported_content_obj.close()
@@ -42,7 +43,7 @@ def import_content_txt(action):
         tbw_obj=open("%s/Content.txt"%cm.work_dir,'w')
         tbw_obj.write(choice)
         tbw_obj.close()
-        content_txt()
+        import_content_txt(action)
 
 def csv_write_line(*arg):
     newline=True

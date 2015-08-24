@@ -1,27 +1,28 @@
-import facebook
 from pydeps import cm
+from pydeps import btoolsinit
 from pydeps import fbauth
-from pydeps import pkimport
+from pydeps import fbio
+from pydeps import btoolsfile
 
-cm.init()
-
-pkimport.parentscript_action = "send your batch comments"
+btoolsinit.init()
 
 # and here we go!
 print """BATCH COMMENTER v0.1
-Comment on multiple posts at the same time
-Place your content into Content.txt and list of target IDs into IDs.txt!
+Comment on multiple posts at the same time.
 """
-graph=fbauth.authenticate()
+fbauth.begin()
 
-# import IDs and content
-targetids=pkimport.ids_txt()
-imported_content=pkimport.content_txt()
+fbio.workingids=btoolsfile.import_ids_txt()
+btoolsfile.import_content_txt("batch comment")
 
 print "\nCommenting..."
-for x in targetids:
-    graph.put_comment(object_id=x,message=imported_content)
+for object_id in btoolsfile.targetids:
+    fbio.debug_interact(fbio.post_imported_comment,object_id)
+    fbio.remove_from_workingids(object_id)
+    if len(fbio.workingids) > 1:
+        print "%s IDs remaining."%len(fbio.workingids)
+    elif len(fbio.workingids) > 0:
+        print "%s ID remaining."%len(fbio.workingids)
 
-print "Done.\n\n"
-    
 print "Batch comments posted!"
+cm.keypress_exit("")

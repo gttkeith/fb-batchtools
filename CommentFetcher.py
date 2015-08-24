@@ -22,7 +22,7 @@ else:
 for post_id in btoolsfile.targetids:
     comment_count=0
     post_content=fbio.fb_interact(fbio.get_post,post_id)
-    comments_data=fbio.fb_interact(fbio.get_post_comments,post_id)
+    comments_data=fbio.fb_interact(fbio.get_comments,post_id)
     for x in comments_data:
         try: 
             x_from=x['from']
@@ -35,7 +35,7 @@ for post_id in btoolsfile.targetids:
         ac_postid=x['id'].encode("utf-8")
         btoolsfile.csv_write_line(post_content,post_id,ac_name,ac_userid,ac_message,ac_postid)
         comment_count+=1
-    fbio.workingids[:] = [item for item in fbio.workingids if item != post_id]
+    fbio.remove_from_workingids(post_id)
     print "Exported: %s (%s/%s, %s comments)"%(post_id,len(btoolsfile.targetids)-len(fbio.workingids),len(btoolsfile.targetids),comment_count)
 
 btoolsfile.active_file_obj.close()
