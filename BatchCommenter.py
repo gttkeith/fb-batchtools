@@ -1,8 +1,4 @@
-from pydeps import cm
-from pydeps import btoolsinit
-from pydeps import fbauth
-from pydeps import fbio
-from pydeps import btoolsfile
+from btoolscore import cm,btoolsinit,btoolsfile,fbauth,fbio
 
 btoolsinit.init()
 
