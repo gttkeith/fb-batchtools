@@ -1,4 +1,4 @@
-from btoolscore import cm,btoolsinit,btoolsfile,fbauth,fbio
+from core import cm,btoolsinit,btoolsfile,fbauth,fbio
 
 btoolsinit.init()
 
@@ -13,14 +13,14 @@ if cm.active_dir==cm.resume_dir:
 else:
     print "Writing to file..."
     btoolsfile.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'w')
-    btoolsfile.csv_write_line("Post","Post ID","Name","User ID","Comment","Comment ID")    
+    btoolsfile.csv_write_line("Post","Post ID","Name","User ID","Comment","Comment ID")
 
 for post_id in btoolsfile.targetids:
     comment_count=0
     post_content=fbio.fb_interact(fbio.get_post,post_id)
     comments_data=fbio.fb_interact(fbio.get_comments,post_id)
     for x in comments_data:
-        try: 
+        try:
             x_from=x['from']
             ac_name=x_from['name'].encode("utf-8")
             ac_userid=x_from['id'].encode("utf-8")
