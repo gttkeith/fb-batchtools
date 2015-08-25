@@ -21,7 +21,7 @@ def id_check(obj_id):
 			resume_ids_obj.write("%s\n"%bak)
 		resume_ids_obj.close()
 		print "Current progress has been saved; restart the program to resume."
-		cm.keypress_exit_syserror()
+		cm.keypress_exit_traceback()
 
 def remove_from_workingids(obj_id):
         global workingids

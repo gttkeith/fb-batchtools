@@ -16,7 +16,7 @@ try:
         btoolsfile.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'w')
         btoolsfile.csv_write_line("Parent Post","Parent ID","Created","Name","User ID","Comment","Comment ID")
 except:
-    cm.keypress_exit_syserror()
+    cm.keypress_exit_traceback()
 
 for post_id in btoolsfile.targetids:
     comment_count=0

@@ -1,5 +1,6 @@
 import os
 import sys
+import traceback
 from os.path import expanduser
 
 global usr_home
@@ -35,12 +36,12 @@ def raw_input_lb(txt):
 
 def keypress_exit(error):
     if error != "":
-        print "Error: ",error
+        print "\nERROR - ",error
     raw_input("\n** PRESS RETURN TO EXIT **\n")
     exit(0)
 
-def keypress_exit_syserror():
-    keypress_exit("%r"%sys.exc_info()[0])    
+def keypress_exit_traceback():
+    keypress_exit(traceback.format_exc())
 
 def boolfix_dict_eval(target_rawstr):
     if target_rawstr[0] is "{" and target_rawstr[-1] is "}":
