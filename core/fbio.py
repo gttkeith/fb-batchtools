@@ -21,7 +21,7 @@ def id_check(obj_id):
 			resume_ids_obj.write("%s\n"%bak)
 		resume_ids_obj.close()
 		print "Current progress has been saved; restart the program to resume."
-		cm.keypress_exit("%r"%sys.exc_info()[0])
+		cm.keypress_exit_syserror()
 
 def remove_from_workingids(obj_id):
         global workingids
@@ -62,8 +62,9 @@ def get_comments(obj_id):
         field_args={'limit':'500000'}
         # TODO: try to remove this limit 50000 thingy...and add pagination support!
         comments=fbauth.graph.get_connections("%s"%obj_id,connection_name='comments',**field_args)
-        comments=cm.boolfix_dict_eval(json.dumps(comments))
-        comments_data=comments['data']
+        comments_rawdict=json.dumps(comments)
+        comments_dict=cm.boolfix_dict_eval(comments_rawdict.encode("utf-8"))
+        comments_data=comments_dict["data"]
         return comments_data
 
 def post_imported_comment(obj_id):

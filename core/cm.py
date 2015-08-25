@@ -39,6 +39,9 @@ def keypress_exit(error):
     raw_input("\n** PRESS RETURN TO EXIT **\n")
     exit(0)
 
+def keypress_exit_syserror():
+    keypress_exit("%r"%sys.exc_info()[0])    
+
 def boolfix_dict_eval(target_rawstr):
     if target_rawstr[0] is "{" and target_rawstr[-1] is "}":
         target_rawstr=target_rawstr.replace(": true",": True").replace(":true",":True")

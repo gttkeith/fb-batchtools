@@ -7,20 +7,23 @@ fbauth.begin()
 
 btoolsfile.import_ids_txt()
 
-if cm.active_dir==cm.resume_dir:
-    print "Appending to file..."
-    btoolsfile.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'a')
-else:
-    print "Writing to file..."
-    btoolsfile.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'w')
-    btoolsfile.csv_write_line("Post","Post ID","Created","Name","User ID","Comment","Comment ID")
+try:
+    if cm.active_dir==cm.resume_dir:
+        print "Appending to file..."
+        btoolsfile.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'a')
+    else:
+        print "Writing to file..."
+        btoolsfile.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'w')
+        btoolsfile.csv_write_line("Parent Post","Parent ID","Created","Name","User ID","Comment","Comment ID")
+except:
+    cm.keypress_exit_syserror()
 
 for post_id in btoolsfile.targetids:
     comment_count=0
     post_content=fbio.fb_interact(fbio.get_post,post_id)
     comments_data=fbio.fb_interact(fbio.get_comments,post_id)
     for single_comment in comments_data:
-        fromseek=cm.dict_to_datalist(single_comment["from"],"name","id")
+        fromseek=cm.dict_to_datalist(single_comment.get("from"),"name","id")
         rootseek_params=["created_time",fromseek,"message","id"]
         x_data=cm.dict_to_datalist(single_comment,*rootseek_params)
         btoolsfile.csv_write_line(post_content,post_id,*x_data)
