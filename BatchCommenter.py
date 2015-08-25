@@ -7,7 +7,7 @@ Comment on multiple posts at the same time.
 """
 fbauth.begin()
 
-fbio.workingids=btoolsfile.import_ids_txt()
+btoolsfile.import_ids_txt()
 btoolsfile.import_content_txt("batch comment")
 
 print "\nCommenting..."

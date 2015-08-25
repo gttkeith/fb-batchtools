@@ -1,6 +1,6 @@
-import cm
-import unicodedata
 from os.path import exists
+import cm
+import fbio
 
 global active_file_obj
 
@@ -25,8 +25,7 @@ def import_ids_txt():
         print "%d ID detected.\n"%num_targetids
     else:
         print "%d IDs detected.\n"%num_targetids
-    workingids=targetids[:]
-    return workingids
+    fbio.workingids=targetids[:]
 
 def import_content_txt(action):
     global imported_content
@@ -45,11 +44,11 @@ def import_content_txt(action):
         tbw_obj.close()
         import_content_txt(action)
 
-def csv_write_line(*arg):
+def csv_write_line(*args):
     newline=True
     to_be_written=""
-    for item in arg:
-        item_sanitised=item.replace('"'," ").replace("\n"," ")
+    for item in args:
+        item_sanitised=item.replace('"',"\'\'").replace("\n"," // ")
         if newline == True:
             to_be_written+=str("\"")
             newline=False

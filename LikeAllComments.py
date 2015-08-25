@@ -22,7 +22,7 @@ post_id=cm.raw_input_lb("What's the ID of the post you'd like to like all commen
 while post_accessible is False:
     try:
         print "Fetching comments from Facebook..."
-        field_args={'fields':'id,from.name,message','limit':'50000'}
+        field_args={'limit':'50000'}
         # REMINDER: try to remove this limit 50000 thingy...and add pagination support!
         comments=graph.get_connections("%s"%post_id,connection_name='comments',**field_args)
         post_accessible=True
