@@ -2,7 +2,6 @@ from core import cm,btoolsinit,btoolsfile,fbauth,fbio
 
 btoolsinit.init()
 
-# and here we go!
 print """BATCH COMMENTER v0.1
 Comment on multiple posts at the same time.
 """
