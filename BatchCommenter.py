@@ -12,7 +12,7 @@ btoolsfile.import_content_txt("batch comment")
 
 print "\nCommenting..."
 for object_id in btoolsfile.targetids:
-    fbio.debug_interact(fbio.post_imported_comment,object_id)
+    fbio.fb_interact(fbio.post_imported_comment,object_id)
     fbio.remove_from_workingids(object_id)
     if len(fbio.workingids) > 1:
         print "%s IDs remaining."%len(fbio.workingids)
