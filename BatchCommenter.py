@@ -3,7 +3,7 @@ from core import cm,btoolsinit,btoolsfile,fbauth,fbio
 btoolsinit.init()
 
 print """BATCH COMMENTER v0.1
-Comment on multiple posts at the same time.
+Comment on multiple posts at the same time
 """
 fbauth.begin()
 

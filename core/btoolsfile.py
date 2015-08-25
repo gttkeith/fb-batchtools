@@ -1,4 +1,5 @@
 from os.path import exists
+from  more_itertools import unique_everseen
 import cm
 import fbio
 
@@ -20,6 +21,9 @@ def import_ids_txt():
             targetids.append(x_raw)
     if cm.active_dir == cm.resume_dir:
         print "Resuming from previous session..."
+    if list(unique_everseen(targetids)) != targetids:
+        targetids = list(unique_everseen(targetids))
+        print "Duplicates found and removed."
     num_targetids=len(targetids)
     if num_targetids is 1:
         print "%d ID detected.\n"%num_targetids
