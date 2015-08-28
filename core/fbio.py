@@ -67,6 +67,10 @@ def get_comments(obj_id):
         comments_data=comments_dict["data"]
         return comments_data
 
-def post_imported_comment(obj_id):
+def put_imported_comment(obj_id):
         fbauth.graph.put_comment(object_id=obj_id,message=btoolsfile.imported_content)
         print "Comment posted on: %s"%obj_id
+
+def put_like(obj_id):
+        fbauth.graph.put_like("%s"%obj_id)
+        print "Liked: %s"%obj_id
