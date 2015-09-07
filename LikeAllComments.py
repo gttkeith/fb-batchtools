@@ -26,5 +26,5 @@ for object_id in btoolsfile.targetids:
     else:
         print "%s comment%s liked."%(comments_count,comment_s)
         
-print "Comments liked!"
+print "All comments liked!"
 cm.keypress_exit("")
