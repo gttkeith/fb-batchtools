@@ -18,17 +18,20 @@ def io_exception(obj_id):
                 resume_ids_obj.write("%s\n"%bak)
         resume_ids_obj.close()
         print "Current progress has been saved; restart the program to resume."
-        cm.keypress_exit_traceback()
+        cm.keypress_exit(sys.exc_info()[0])
 
 def remove_from_workingids(obj_id):
         global workingids
         workingids[:] = [item for item in workingids if item != obj_id]
 
 def debug_interact(calledfunc,obj_id):
-        time.sleep(2)
-        ret=calledfunc(obj_id)
-        print ret
-        return ret
+        try:
+                time.sleep(2)
+                ret=calledfunc(obj_id)
+                print ret
+                return ret
+        except:
+                cm.keypress_exit_traceback()                
 
 def fb_interact(calledfunc,obj_id):
         complete=False
