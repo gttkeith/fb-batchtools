@@ -8,20 +8,17 @@ import btoolsfile
 
 global workingids
 
-def id_check(obj_id):
+def io_exception(obj_id):
 	global workingids
-	try:
-                fbauth.check_auth(fbauth.access_token)
-		fbauth.graph.get_object("%s"%obj_id)
-	except:
-		print "An error occured. If it's a Facebook Graph error, please check your IDs and connection!"
-                cm.empty_file("%s/IDs.txt"%cm.resume_dir)
-                resume_ids_obj=open("%s/IDs.txt"%cm.resume_dir,'a') 
-		for bak in workingids:
-			resume_ids_obj.write("%s\n"%bak)
-		resume_ids_obj.close()
-		print "Current progress has been saved; restart the program to resume."
-		cm.keypress_exit_traceback()
+        fbauth.check_auth()
+        print "An error occured. If it's a not an authentication error, please check your IDs and connection!"
+        cm.empty_file("%s/IDs.txt"%cm.resume_dir)
+        resume_ids_obj=open("%s/IDs.txt"%cm.resume_dir,'a') 
+        for bak in workingids:
+                resume_ids_obj.write("%s\n"%bak)
+        resume_ids_obj.close()
+        print "Current progress has been saved; restart the program to resume."
+        cm.keypress_exit_traceback()
 
 def remove_from_workingids(obj_id):
         global workingids
@@ -43,7 +40,7 @@ def fb_interact(calledfunc,obj_id):
                         return ret
                 except:
                         print "Exception: ",sys.exc_info()[0]
-                        id_check(obj_id)
+                        io_exception(obj_id)
 
 def get_post(obj_id):
         content=fbauth.graph.get_object("%s"%obj_id)
