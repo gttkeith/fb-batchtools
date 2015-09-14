@@ -50,7 +50,7 @@ def boolfix_dict_eval(target_rawstr):
         output=eval(target_rawstr)
         return output
     else:
-        keypress_exit("Unexpected Facebook API input")
+        keypress_exit("Unexpected retrieved string input")
 
 def dict_to_datalist(target_dict,*args):
     ret_list = []
