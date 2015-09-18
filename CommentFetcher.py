@@ -9,10 +9,10 @@ btoolsfile.import_ids_txt()
 
 try:
     if cm.active_dir==cm.resume_dir:
-        print "Appending to file..."
+        print "Resuming export..."
         btoolsfile.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'a')
     else:
-        print "Writing to file..."
+        print "Exporting to file..."
         btoolsfile.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'w')
         btoolsfile.csv_write_line("Parent Post","Parent ID","Created","Name","User ID","Comment","Comment ID")
 except:
