@@ -37,11 +37,11 @@ def raw_input_lb(txt):
 def keypress_exit(error):
     if error != "":
         print "\nERROR - ",error
-    raw_input("\n** PRESS RETURN TO EXIT **\n")
+    input=raw_input("\n** PRESS RETURN TO EXIT **\n")
+    if input == "traceback": 
+        traceback.format_exc()
+        raw_input("\n**END TRACEBACK**")
     exit(0)
-
-def keypress_exit_traceback():
-    keypress_exit(traceback.format_exc())
 
 def boolfix_dict_eval(target_rawstr):
     if target_rawstr[0] is "{" and target_rawstr[-1] is "}":

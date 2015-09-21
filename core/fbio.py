@@ -22,16 +22,7 @@ def io_exception(obj_id):
 
 def remove_from_workingids(obj_id):
         global workingids
-        workingids[:] = [item for item in workingids if item != obj_id]
-
-def debug_interact(calledfunc,obj_id):
-        try:
-                time.sleep(2)
-                ret=calledfunc(obj_id)
-                print ret
-                return ret
-        except:
-                cm.keypress_exit_traceback()                
+        workingids[:] = [item for item in workingids if item != obj_id]           
 
 def fb_interact(calledfunc,obj_id):
         complete=False
