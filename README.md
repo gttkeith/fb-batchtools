@@ -4,7 +4,9 @@ A quick and dirty set of tools for Facebook power users and page admins
 #### Dependencies:  
 * Python 2.7 https://www.python.org/download/releases/2.7/
 * Facebook for Python https://github.com/pythonforfacebook/facebook-sdk
-* Facebook Graph API access token https://developers.facebook.com/tools/explorer/ (remember to enable the relevant permissions!)
+* Facebook Graph API access token https://developers.facebook.com/tools/explorer/ 
+
+Sidenote: Remember to enable the relevant permissions for page publishing, management, ads and insights!
 
 User files are stored at ~/Documents/fb-batchtools, and outputs are exported to ~/Documents/fb-batchtools/export.
 
