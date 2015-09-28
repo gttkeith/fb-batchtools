@@ -36,7 +36,7 @@ def fb_interact(calledfunc,obj_id):
                         print "Exception: ",sys.exc_info()[0]
                         io_exception(obj_id)
 
-def get_post(obj_id):
+def get_content(obj_id):
         content=fbauth.graph.get_object("%s"%obj_id)
         if content.get("message") != None:
                 ret=content.get("message")

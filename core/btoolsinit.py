@@ -29,5 +29,4 @@ def init():
         else:
             print "Resume canceled."
             cm.active_dir = cm.work_dir
-            tbe_obj=open("%s/IDs.txt"%cm.resume_dir,'w')
-            tbe_obj.close()
+            cm.empty_file("%s/IDs.txt"%cm.resume_dir)

@@ -19,7 +19,7 @@ else:
 for post_id in btoolsfile.targetids:
     comment_count=0
     comment_s="s"
-    post_content=fbio.fb_interact(fbio.get_post,post_id)
+    post_content=fbio.fb_interact(fbio.get_content,post_id)
     comments_data=fbio.fb_interact(fbio.get_comments,post_id)
     for single_comment in comments_data:
         fromseek=cm.dict_to_datalist(single_comment.get("from"),"name","id")
@@ -28,7 +28,9 @@ for post_id in btoolsfile.targetids:
         btoolsfile.csv_write_line(post_content,post_id,*x_data)
         comment_count+=1
     fbio.remove_from_workingids(post_id)
-    if comment_count is 1:
+    if comment_count is 0:
+        btoolsfile.csv_write_line(post_content,post_id,'','','',"(no comments)")
+    elif comment_count is 1:
         comment_s=""
     print "Exported: %s (%s/%s, %s comment%s)"%(post_id,len(btoolsfile.targetids)-len(fbio.workingids),len(btoolsfile.targetids),comment_count,comment_s)
 

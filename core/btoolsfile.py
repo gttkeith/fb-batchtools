@@ -22,11 +22,12 @@ def import_ids_txt():
     if cm.active_dir == cm.resume_dir:
         print "Resuming from previous session..."
         rem_dect=" remaining"
+        cm.empty_file("%s/IDs.txt"%cm.active_dir)
     num_targetids=len(targetids)
     if num_targetids is 1:
-        print "%d%s ID detected.\n"%num_targetids,rem_dect
+        print "%d%s ID detected.\n"%(num_targetids,rem_dect)
     else:
-        print "%d%s IDs detected.\n"%num_targetids,rem_dect
+        print "%d%s IDs detected.\n"%(num_targetids,rem_dect)
     fbio.workingids=targetids[:]
 
 def import_content_txt(action):

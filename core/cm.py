@@ -45,12 +45,13 @@ def keypress_exit(error):
 
 def boolfix_dict_eval(target_rawstr):
     if target_rawstr[0] is "{" and target_rawstr[-1] is "}":
-        target_rawstr=target_rawstr.replace(": true",": True").replace(":true",":True")
-        target_rawstr=target_rawstr.replace(": false",": False").replace(":false",":False")
-        output=eval(target_rawstr)
-        return output
-    else:
-        keypress_exit("Unexpected retrieved string input")
+        try:
+            target_rawstr=target_rawstr.replace(": true",": True").replace(":true",":True")
+            target_rawstr=target_rawstr.replace(": false",": False").replace(":false",":False")
+            output=eval(target_rawstr)
+            return output
+        except:
+            keypress_exit("Unexpected retrieved string input")
 
 def dict_to_datalist(target_dict,*args):
     ret_list = []
