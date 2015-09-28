@@ -39,8 +39,8 @@ def keypress_exit(error):
         print "\nERROR - ",error
     input=raw_input("\n** PRESS RETURN TO EXIT **\n")
     if input == "traceback": 
-        traceback.format_exc()
-        raw_input("\n**END TRACEBACK**")
+        print traceback.format_exc()
+        raw_input("\n** END TRACEBACK **")
     exit(0)
 
 def boolfix_dict_eval(target_rawstr):

@@ -8,7 +8,7 @@ fbauth.begin()
 btoolsfile.import_ids_txt()
 
 
-if cm.active_dir==cm.resume_dir:
+if cm.active_dir == cm.resume_dir:
     print "Resuming export..."
     btoolsfile.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'a')
 else:
@@ -18,6 +18,7 @@ else:
 
 for post_id in btoolsfile.targetids:
     comment_count=0
+    comment_s="s"
     post_content=fbio.fb_interact(fbio.get_post,post_id)
     comments_data=fbio.fb_interact(fbio.get_comments,post_id)
     for single_comment in comments_data:
@@ -27,7 +28,9 @@ for post_id in btoolsfile.targetids:
         btoolsfile.csv_write_line(post_content,post_id,*x_data)
         comment_count+=1
     fbio.remove_from_workingids(post_id)
-    print "Exported: %s (%s/%s, %s comments)"%(post_id,len(btoolsfile.targetids)-len(fbio.workingids),len(btoolsfile.targetids),comment_count)
+    if comment_count is 1:
+        comment_s=""
+    print "Exported: %s (%s/%s, %s comment%s)"%(post_id,len(btoolsfile.targetids)-len(fbio.workingids),len(btoolsfile.targetids),comment_count,comment_s)
 
 btoolsfile.active_file_obj.close()
 

@@ -22,10 +22,12 @@ def init():
         cm.active_dir = cm.work_dir
     else:
         print "Data from last session was found. Resume session?\nType Y to continue, or anything else to discard and start a new session."
-        choice=cm.raw_input_lb("> ")
-        if choice.lower() is "y":
+        choice=str(cm.raw_input_lb("> ")).lower().find("y")
+        if choice != -1:
+            print "Resuming..."
             cm.active_dir = cm.resume_dir
         else:
+            print "Resume canceled."
             cm.active_dir = cm.work_dir
             tbe_obj=open("%s/IDs.txt"%cm.resume_dir,'w')
             tbe_obj.close()
