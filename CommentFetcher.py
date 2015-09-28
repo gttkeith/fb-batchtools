@@ -1,6 +1,7 @@
-from core import cm,btoolsinit,btoolsfile,fbauth,fbio
-
+from core import cm,btoolsinit
 btoolsinit.init()
+
+from core import btoolsfile,fbauth,fbio
 
 print "\nCOMMENT FETCHER v0.1\nExports all comments on selected posts into a CSV file\n"
 fbauth.begin()

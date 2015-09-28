@@ -1,6 +1,7 @@
-from core import cm,btoolsinit,btoolsfile,fbauth,fbio
-
+from core import cm,btoolsinit
 btoolsinit.init()
+
+from core import btoolsfile,fbauth,fbio
 
 print "LIKE ALL COMMENTS v0.1\nLikes all comments on selected posts\n"
 
