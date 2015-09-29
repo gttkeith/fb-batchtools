@@ -10,17 +10,15 @@ fbauth.begin()
 btoolsfile.import_ids_txt()
 btoolsfile.smart_edit("%s/fb-insights.csv"%cm.export_dir)
 
-for post_id in btoolsfile.targetids:
-    post_content=fbio.fb_interact(fbio.get_content,post_id)
-    btoolsfile.csv_write_line(post_content)
-    btoolsfile.csv_write_line(post_id)
+for obj_id in btoolsfile.targetids:
+    obj_content=fbio.fb_interact(fbio.get_content,obj_id)
+    btoolsfile.csv_write_line("%s: %s"%(obj_content,obj_id))
     btoolsfile.csv_write_line()
-    insights_data=fbio.fb_interact(fbio.get_insights,post_id)
+    insights_data=fbio.fb_interact(fbio.get_insights,obj_id)
     for insight_data in insights_data:
         dtitle=insight_data["title"]
         ddesc=insight_data["description"]
-        btoolsfile.csv_write_line(dtitle)
-        btoolsfile.csv_write_line(ddesc)
+        btoolsfile.csv_write_line("%s - %s"%(dtitle,ddesc))
         latest_data=insight_data["values"].pop().get("value")
         if type(latest_data) is dict:
             dkeys=[]
@@ -39,13 +37,13 @@ for post_id in btoolsfile.targetids:
         else:
             btoolsfile.csv_write_line(latest_data)
         btoolsfile.csv_write_line()
-    fbio.remove_from_workingids(post_id)
+    fbio.remove_from_workingids(obj_id)
     if len(insights_data) is 0:
-        btoolsfile.csv_write_line()
         btoolsfile.csv_write_line("(no insights available)")
+        btoolsfile.csv_write_line()
     for r in range(2):
         btoolsfile.csv_write_line()
-    print "Exported: %s (%s/%s)"%(post_id,len(btoolsfile.targetids)-len(fbio.workingids),len(btoolsfile.targetids))
+    print "Exported: %s (%s/%s)"%(obj_id,len(btoolsfile.targetids)-len(fbio.workingids),len(btoolsfile.targetids))
 
 btoolsfile.active_file_obj.close()
 
