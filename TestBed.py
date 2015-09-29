@@ -12,13 +12,8 @@ print "Ready to accept input."
 exit=False
 while exit is False:
     cmd=raw_input("> ")
-    if cmd is "exit testbed":
-        exit = True
-    else:
-        try:
-            out=eval(cmd)
-            print out
-        except:
-            print "\n** EXCEPTION **\n",traceback.format_exc(),"\n"
-
-cm.exexc(None,None)
+    try:
+        out=eval(cmd)
+        print out
+    except:
+        print "\n** EXCEPTION **\n",traceback.format_exc(),"\n"
