@@ -2,6 +2,7 @@ from core import cm,btoolsinit
 btoolsinit.init()
 
 from core import btoolsfile,fbauth,fbio
+import operator
 
 print "\nINSIGHT FETCHER\nExports insight data on selected pages/posts into a CSV file\nMay work on pages that you do not administrate\n"
 fbauth.begin()
@@ -24,7 +25,8 @@ for post_id in btoolsfile.targetids:
         if type(latest_data) is dict:
             dkeys=[]
             dvalues=[]
-            for k,v in latest_data.iteritems():
+            dsorted = sorted(latest_data.items(), key=operator.itemgetter(1), reverse=True)
+            for k,v in dsorted:
                 dkeys.append(k)
                 dvalues.append(v)
             btoolsfile.csv_write_line(*dkeys)
