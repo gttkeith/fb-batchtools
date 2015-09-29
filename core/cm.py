@@ -34,15 +34,6 @@ def raw_input_lb(txt):
     print " "
     return out
 
-def keypress_exit(error):
-    if error != "":
-        print "\nERROR - ",error
-    input=raw_input("\n** PRESS RETURN TO EXIT **\n")
-    if input == "traceback": 
-        print traceback.format_exc()
-        raw_input("\n** END TRACEBACK **")
-    exit(0)
-
 def boolfix_dict_eval(target_rawstr):
     if target_rawstr[0] is "{" and target_rawstr[-1] is "}":
         try:
@@ -51,7 +42,7 @@ def boolfix_dict_eval(target_rawstr):
             output=eval(target_rawstr)
             return output
         except:
-            keypress_exit("Unexpected retrieved string input")
+            exexc("unexpected retrieved string input",None)
 
 def dict_to_datalist(target_dict,*args):
     ret_list = []
@@ -65,3 +56,15 @@ def dict_to_datalist(target_dict,*args):
             except:
                 ret_list.append("(unknown \'%s\')"%item)
     return ret_list
+
+def exexc(cause,subsequent):
+    if cause != None:
+        print "\nException: \"%s\"."%cause.lower()
+    if subsequent != None:
+        raw_input("\n** PRESS RETURN TO %s **\n"%subsequent.upper())
+    else:
+        input=raw_input("\n** PRESS RETURN TO EXIT **\n")
+        if input == "traceback" and cause != "": 
+            print traceback.format_exc()
+            raw_input("\n** END TRACEBACK **")
+        exit(0)

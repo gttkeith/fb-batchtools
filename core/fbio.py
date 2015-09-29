@@ -1,10 +1,4 @@
-import sys
-import json
-import time
-import cm
-import facebook
-import fbauth
-import btoolsfile
+import sys,time,json,cm,facebook,fbauth,btoolsfile
 
 global workingids
 
@@ -18,7 +12,7 @@ def io_exception(obj_id):
                 resume_ids_obj.write("%s\n"%bak)
         resume_ids_obj.close()
         print "Current progress has been saved; restart the program to resume."
-        cm.keypress_exit(sys.exc_info()[0])
+        cm.exexc(str(sys.exc_info()[0]),None)
 
 def remove_from_workingids(obj_id):
         global workingids
@@ -36,6 +30,12 @@ def fb_interact(calledfunc,obj_id):
                         print "Exception: ",sys.exc_info()[0]
                         io_exception(obj_id)
 
+def parse_fb_dict_input(raw_data):
+        data_rawdict=json.dumps(raw_data)
+        data_dict=cm.boolfix_dict_eval(data_rawdict.encode("utf-8"))
+        parsed_data=data_dict.get("data")
+        return parsed_data
+
 def get_content(obj_id):
         content=fbauth.graph.get_object("%s"%obj_id)
         if content.get("message") != None:
@@ -51,12 +51,15 @@ def get_content(obj_id):
         
 def get_comments(obj_id):
         field_args={'limit':'500000'}
-        # TODO: try to remove this limit 50000 thingy...and add pagination support!
+        # TODO: try to remove this limit 500000 thingy...and add pagination support!
         comments=fbauth.graph.get_connections("%s"%obj_id,connection_name='comments',**field_args)
-        comments_rawdict=json.dumps(comments)
-        comments_dict=cm.boolfix_dict_eval(comments_rawdict.encode("utf-8"))
-        comments_data=comments_dict["data"]
-        return comments_data
+        return parse_fb_dict_input(comments)
+
+def get_insights(obj_id):
+        field_args={'limit':'500000'}
+        # TODO as above again
+        data=fbauth.graph.get_connections("%s"%obj_id,connection_name='insights',**field_args)
+        return parse_fb_dict_input(data)
 
 def put_imported_comment(obj_id):
         fbauth.graph.put_comment(object_id=obj_id,message=btoolsfile.imported_content)

@@ -36,6 +36,9 @@ def check_auth():
         print "The access token seems to be invalid or expired."
         ret=change_access_token()
         return ret
+    except:
+        cm.exexc("could not connect to server","try again")
+        check_auth()
 
 def auth_choose():
     global graph

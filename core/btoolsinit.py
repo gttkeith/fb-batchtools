@@ -1,7 +1,6 @@
 import os,sys,site,importlib,pip,cm
 
-def init():
-    # Check for dependencies
+def depend_chk():
     depens = ("facebook",)
     for pak in depens:
         try:
@@ -14,7 +13,7 @@ def init():
             reload(site)
             globals()[pak] = importlib.import_module(pak)
 
-    # Ensure FS dirs are present
+def fs_ensure():
     cm.ensure_dir("%s"%cm.work_dir)
     cm.ensure_dir("%s"%cm.cfg_dir)
     cm.ensure_dir("%s"%cm.export_dir)
@@ -27,7 +26,7 @@ def init():
 
     cm.ensure_file("%s/IDs.txt"%cm.resume_dir)
 
-    # Check for resume files
+def resume_chk():
     resumecheck_obj=open("%s/IDs.txt"%cm.resume_dir,'r')
     resumecheck=resumecheck_obj.read()
     resumecheck_obj.close()
@@ -43,3 +42,8 @@ def init():
             print "Resume canceled."
             cm.active_dir = cm.work_dir
             cm.empty_file("%s/IDs.txt"%cm.resume_dir)
+
+def init():
+    depend_chk()
+    fs_ensure()
+    resume_chk()

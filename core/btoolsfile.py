@@ -51,6 +51,7 @@ def csv_write_line(*args):
     newline=True
     to_be_written=""
     for item in args:
+        item=str(item)
         item_sanitised=item.replace('"',"\'\'").replace("\n"," // ")
         if newline == True:
             to_be_written+=str("\"")
@@ -61,3 +62,16 @@ def csv_write_line(*args):
 	to_be_written+=str("\"")
     active_file_obj.write(to_be_written)
     active_file_obj.write("\n")
+
+def smart_edit(filen):
+    global active_file_obj
+    try:
+        if cm.active_dir == cm.resume_dir:
+            print "Appending remaining data to file..."
+            active_file_obj=open(filen,'a')
+        else:
+            print "Writing data to file..."
+            active_file_obj=open(filen,'w')
+    except:
+        cm.exexc("the file seems to be in use","try again")
+	smart_edit(filen)

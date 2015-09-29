@@ -3,19 +3,12 @@ btoolsinit.init()
 
 from core import btoolsfile,fbauth,fbio
 
-print "\nCOMMENT FETCHER v0.1\nExports all comments on selected posts into a CSV file\n"
+print "\nCOMMENT FETCHER\nExports all comments on selected posts into a CSV file\n"
 fbauth.begin()
 
 btoolsfile.import_ids_txt()
-
-
-if cm.active_dir == cm.resume_dir:
-    print "Resuming export..."
-    btoolsfile.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'a')
-else:
-    print "Exporting to file..."
-    btoolsfile.active_file_obj=open("%s/fb-comments.csv"%cm.export_dir,'w')
-    btoolsfile.csv_write_line("Parent Post","Parent ID","Created","Name","User ID","Comment","Comment ID")
+btoolsfile.smart_edit("%s/fb-comments.csv"%cm.export_dir)
+btoolsfile.csv_write_line("Parent Post","Parent ID","Created","Name","User ID","Comment","Comment ID")
 
 for post_id in btoolsfile.targetids:
     comment_count=0
@@ -38,4 +31,4 @@ for post_id in btoolsfile.targetids:
 btoolsfile.active_file_obj.close()
 
 print "Export complete!"
-cm.keypress_exit("")
+cm.exexc(None,None)

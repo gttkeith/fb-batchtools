@@ -3,7 +3,7 @@ btoolsinit.init()
 
 from core import btoolsfile,fbauth,fbio
 
-print "LIKE ALL COMMENTS v0.1\nLikes all comments on selected posts\n"
+print "\nLIKE ALL COMMENTS\nLikes all comments on selected posts\n"
 
 fbauth.begin()
 btoolsfile.import_ids_txt()
@@ -28,4 +28,4 @@ for object_id in btoolsfile.targetids:
         print "%s comment%s liked."%(comments_count,comment_s)
         
 print "All comments liked!"
-cm.keypress_exit("")
+cm.exexc(None,None)
