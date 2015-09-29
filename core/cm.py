@@ -59,7 +59,7 @@ def dict_to_datalist(target_dict,*args):
 
 def exexc(cause,subsequent):
     if cause != None:
-        print "\nException: \"%s\"."%cause.lower()
+        print "\nException: %s."%cause.lower()
     if subsequent != None:
         raw_input("\n** PRESS RETURN TO %s **\n"%subsequent.upper())
     else:
