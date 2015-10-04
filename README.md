@@ -18,11 +18,11 @@ User files are stored at ~/Documents/fb-batchtools, and outputs are exported to 
 
 IDs can be obtained from the exported Page Insights XLS (recommended), of from the URL of the link itself:  
 _http://facebook.com/PAGE_ID_HERE/posts.or.photos.or.stuff/POST_ID_HERE._  
-  
+
 Page names can be used to subsitute IDs as well. IDs from the URL sometimes may result in invalid ID errors; you can check the validity of an ID using the Graph API Explorer (mentioned above).
 
 Place your input IDs and input content in IDs.txt and Content.txt respectively. Some functions use both, some only use one.  
 
 
 ### License
-fb-batchtools is under the [GNU General Public License](https://github.com/gttkeith/fb-batchtools/blob/master/LICENSE).
+fb-batchtools uses the [GNU General Public License](https://github.com/gttkeith/fb-batchtools/blob/master/LICENSE).
