@@ -61,10 +61,12 @@ def exexc(cause,subsequent):
     if cause != None:
         print "\nException: %s."%cause.lower()
     if subsequent != None:
-        raw_input("\n** PRESS RETURN TO %s **\n"%subsequent.upper())
+        print "\n** PRESS RETURN TO %s **"%subsequent.upper()
     else:
-        input=raw_input("\n** PRESS RETURN TO EXIT **\n")
-        if input == "traceback" and cause != "": 
-            print traceback.format_exc()
-            raw_input("\n** END TRACEBACK **")
+        print "\n** PRESS RETURN TO EXIT **"
+    input = raw_input()
+    if input == "traceback" and cause != "":
+        print traceback.format_exc()
+        raw_input("\n** END TRACEBACK **")
+    if subsequent == None:
         exit(0)

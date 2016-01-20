@@ -28,7 +28,7 @@ def check_auth():
     global access_token
     global graph
     try:
-        graph=facebook.GraphAPI(access_token,version='2.2')
+        graph=facebook.GraphAPI(access_token)
         info=graph.get_object("me")
         ret=info["name"]
         return ret
