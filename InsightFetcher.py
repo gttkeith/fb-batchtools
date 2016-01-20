@@ -12,7 +12,7 @@ btoolsfile.smart_edit("%s/fb-insights.csv"%cm.export_dir)
 
 for obj_id in btoolsfile.targetids:
     obj_content=fbio.fb_interact(fbio.get_content,obj_id)
-    btoolsfile.csv_write_line("%s: %s"%(obj_content,obj_id))
+    btoolsfile.csv_write_line("%s (%s)"%(obj_content,obj_id))
     btoolsfile.csv_write_line()
     insights_data=fbio.fb_interact(fbio.get_insights,obj_id)
     for insight_data in insights_data:
