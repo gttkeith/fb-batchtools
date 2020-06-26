@@ -1,5 +1,5 @@
 # fb-batchtools
-A quick and dirty set of tools for Facebook power users and page admins!  
+Quick and dirty set of tools for Facebook power users and page admins  
 
 
 ### You'll need  
